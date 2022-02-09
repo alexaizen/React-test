@@ -21,7 +21,7 @@ function LeftSidebar(props) {
       <div className="profile-area">
         <img
           src="https://mmox.me/img/profile.png"
-          alt="profile picture"
+          alt="avatar"
           width="60px"
           height="60px"
         />

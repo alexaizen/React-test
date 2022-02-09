@@ -1,4 +1,3 @@
-import { produceWithPatches } from "immer";
 import "./SquareCard.css";
 
 function SquareCard(props) {
