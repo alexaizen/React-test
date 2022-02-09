@@ -1,0 +1,11 @@
+.navigation {
+  background-color: #171717;
+  width: auto;
+  border-radius: 0 15px 0 0;
+  margin: 15px 15px 15px 0;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 2 / -1;
+}

@@ -1,0 +1,15 @@
+.area-medium-three {
+  margin: 0 15px 15px 0;
+  border-radius: 15px;
+  padding: 15px 50px;
+  grid-column: 2 / -2;
+  grid-row: 2 / -2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
+  justify-items: center;
+  align-items: stretch;
+  overflow: scroll;
+  overflow-x: hidden;
+}

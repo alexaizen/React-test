@@ -1,0 +1,18 @@
+.task-card-single {
+  width: 100%;
+  height: 150px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: brown;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.task-card-single h5 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.task-card-single p {
+  font-size: 12px;
+}
