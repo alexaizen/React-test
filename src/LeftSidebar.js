@@ -39,33 +39,46 @@ function LeftSidebar(props) {
         <ul className="nav-menu">
           <NavLink activeClassName="nav-active" to="/dashboard">
             <li>
-              <img src="/Assets/chart-network.png" width="24px"></img>Dashboard
+              <img
+                src="/Assets/chart-network.png"
+                alt="Dashboard"
+                width="24px"
+              ></img>
+              Dashboard
             </li>
           </NavLink>
 
           <NavLink activeClassName="nav-active" to="/tasks">
             <li>
-              <img src="/Assets/list-check.png" width="24px" />
+              <img src="/Assets/list-check.png" alt="Tasks" width="24px" />
               Tasks
             </li>
           </NavLink>
 
           <NavLink activeClassName="nav-active" to="/profile">
             <li>
-              <img src="/Assets/user.png" width="24px" />
+              <img src="/Assets/user.png" alt="Profile" width="24px" />
               Profile
             </li>
           </NavLink>
 
           <NavLink activeClassName="nav-active" to="/settings">
             <li>
-              <img src="/Assets/settings.png" width="24px" />
+              <img src="/Assets/settings.png" alt="Settings" width="24px" />
               Settings
             </li>
           </NavLink>
         </ul>
       )}
-      {isLogedIn && <button onClick={loginStatusHandler}>Log out</button>}
+      {isLogedIn && (
+        <button
+          className="button-log-out"
+          type="button"
+          onClick={loginStatusHandler}
+        >
+          Log out
+        </button>
+      )}
     </nav>
   );
 }
