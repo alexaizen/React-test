@@ -13,13 +13,13 @@ import ProjectsCard from "../Components/ProjectsCard";
 function Dashboard(props) {
   return (
     <React.Fragment>
-      <NavBar>
+      <NavBar user={props.user}>
         <h2>Dashboard</h2>
       </NavBar>
       <MainAreaMedium>
         <WeatherDashCard />
-        <StockExchangeCard />
-        <TasksDashCard />
+        <StockExchangeCard user={props.user} />
+        <TasksDashCard user={props.user} />
         <ProjectsCard />
       </MainAreaMedium>
 

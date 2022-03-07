@@ -3,10 +3,10 @@ import NavBar from "../NavBar";
 import MainAreaLarge from "../UI/MainAreaLarge";
 import "./Settings.css";
 
-function Settings() {
+function Settings(props) {
   return (
     <React.Fragment>
-      <NavBar>
+      <NavBar user={props.user}>
         <h2>Settings</h2>
       </NavBar>
       <MainAreaLarge>

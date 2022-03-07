@@ -1,11 +1,15 @@
 .task-card-single {
   width: 100%;
-  height: 150px;
+  height: 180px;
   padding: 20px;
-  border-radius: 15px;
-  background-color: brown;
+  border-radius: 10px;
+  /* border-left: 18px solid rgb(67, 67, 167); */
+  background-color: #1e1e1e;
   overflow: hidden;
   word-break: break-all;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .task-card-single h5 {
@@ -15,4 +19,61 @@
 
 .task-card-single p {
   font-size: 12px;
+}
+
+.task-card-single input,
+.task-card-single textarea {
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #e0e0e0;
+}
+
+.button-complete {
+  padding: 7px 20px;
+  background-color: #154c79;
+  border-style: none;
+  border-radius: 5px;
+  color: antiquewhite;
+  font-weight: 600;
+}
+
+.button-complete:hover {
+  background-color: #193a55;
+}
+
+.button-edit {
+  padding: 7px 20px;
+  background-color: #157279;
+  border-style: none;
+  border-radius: 5px;
+  color: antiquewhite;
+  font-weight: 600;
+}
+
+.button-edit:hover {
+  background-color: #1c5b5f;
+}
+
+.button-delete {
+  padding: 7px 20px;
+  background-color: #154c7900;
+  color: rgb(209, 36, 36);
+  margin-right: auto;
+  border-style: none;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.button-delete:hover {
+  background-color: antiquewhite;
+  color: rgb(209, 36, 36);
+}
+
+.buttons-area {
+  display: flex;
+  /* justify-self: end; */
+  margin-top: auto;
+  column-gap: 10px;
 }

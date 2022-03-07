@@ -1,11 +1,11 @@
 import "./TasksDashCard.css";
 import SquareCard from "../UI/SquareCard";
 
-function TasksDashCard() {
+function TasksDashCard(props) {
   return (
     <SquareCard>
-      <h4>Tasks</h4>
-      {`Active: 12
+      <h4>Tasks </h4>
+      {`Active:
       Finished: 7
       Total: 19`}
     </SquareCard>

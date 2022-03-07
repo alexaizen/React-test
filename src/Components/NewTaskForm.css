@@ -7,8 +7,8 @@
 }
 
 .new-task button {
-  width: 90%;
-  background-color: brown;
+  width: 100%;
+  background-color: #2f49d1;
   border-style: none;
   padding: 15px 25px;
   margin-bottom: 20px;
@@ -16,11 +16,27 @@
 }
 
 .new-task input {
-  width: 90%;
+  width: 100%;
   padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.new-task textarea {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 5px;
 }
 
 .new-task label {
   font-size: 12px;
   text-transform: uppercase;
+}
+
+.cancel {
+  border-style: none;
+  background-color: rgba(240, 248, 255, 0);
+  padding: 0 25px;
+  color: #ecd3b5;
+  font-size: 16px;
+  font-weight: 500;
 }

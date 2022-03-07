@@ -31,26 +31,6 @@
     border-radius: 10px;
   } */
 
-.message-area::-webkit-scrollbar {
-  width: 10px;
-  margin-right: 5px;
-  background-color: aqua;
-  border-radius: 150px;
-}
-
-.message-area::-webkit-scrollbar-thumb {
-  width: 10px;
-  background-color: rgb(109, 8, 204);
-  border-radius: 15px;
-}
-
-.message-area::-webkit-scrollbar-track {
-  height: 60%;
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 150px;
-  margin-right: 15px;
-}
-
 .text-area {
   width: 100%;
   margin: 15px 0 0 0;
@@ -64,4 +44,24 @@
   padding: 15px 25px;
   background-color: brown;
   border-style: none;
+}
+
+.message-area::-webkit-scrollbar {
+  width: 5px;
+  margin-right: 5px;
+  background-color: rgb(136, 136, 136);
+  border-radius: 150px;
+}
+
+.message-area::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: rgb(44, 44, 44);
+  border-radius: 15px;
+}
+
+.message-area::-webkit-scrollbar-track {
+  height: 60%;
+  /* box-shadow: inset 0 0 5px rgb(44, 44, 44); */
+  border-radius: 150px;
+  margin-right: 15px;
 }

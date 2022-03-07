@@ -11,45 +11,62 @@ function LeftSidebar(props) {
   const history = useHistory();
 
   const loginStatusHandler = function (e) {
-    e.preventDefault();
+    // e.preventDefault();
     dispatch(loginActions.loginToggle());
     history.push(isLogedIn ? "/welcome" : "/dashboard");
   };
 
   return (
-    <div className="left-sidebar">
+    <nav className="left-sidebar">
       <div className="profile-area">
         <img
-          src="https://mmox.me/img/profile.png"
+          src="/Assets/network.png"
           alt="avatar"
           width="60px"
           height="60px"
         />
-        <h4>Marko markovic</h4>
+        <h4>Connectify</h4>
       </div>
-      {!isLogedIn && <LoginForm onLogin={loginStatusHandler} />}
+      {!isLogedIn && (
+        <LoginForm
+          onLogin={loginStatusHandler}
+          userData={props.userData}
+          user={props.user}
+        />
+      )}
 
       {isLogedIn && (
         <ul className="nav-menu">
           <NavLink activeClassName="nav-active" to="/dashboard">
-            <li>Dashboard</li>
+            <li>
+              <img src="/Assets/chart-network.png" width="24px"></img>Dashboard
+            </li>
           </NavLink>
 
           <NavLink activeClassName="nav-active" to="/tasks">
-            <li>Tasks</li>
+            <li>
+              <img src="/Assets/list-check.png" width="24px" />
+              Tasks
+            </li>
           </NavLink>
 
           <NavLink activeClassName="nav-active" to="/profile">
-            <li>Profile</li>
+            <li>
+              <img src="/Assets/user.png" width="24px" />
+              Profile
+            </li>
           </NavLink>
 
           <NavLink activeClassName="nav-active" to="/settings">
-            <li>Settings</li>
+            <li>
+              <img src="/Assets/settings.png" width="24px" />
+              Settings
+            </li>
           </NavLink>
         </ul>
       )}
       {isLogedIn && <button onClick={loginStatusHandler}>Log out</button>}
-    </div>
+    </nav>
   );
 }
 

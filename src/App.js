@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import Layout from "./UI/Layout";
@@ -11,30 +12,55 @@ import Welcome from "./Pages/Welcome";
 
 function App() {
   const isLogedIn = useSelector((state) => state.isLogedIn);
+  const [isLoaded, setIsloaded] = useState(false);
+
+  // Identifies currently logged user by email
+  const [currentUserEmail, setCurrentUserEmail] = useState({
+    email: "no email",
+  });
+  // Set currently logged user by email
+  const currentUserDataHandler = function (dbData, id) {
+    setCurrentUserEmail((prevState) => {
+      return { ...prevState, ...dbData, id: id, test: "test" };
+    });
+    console.log(currentUserEmail);
+    setIsloaded(true);
+  };
+
+  const currentUserDataUpdater = function (user) {
+    setCurrentUserEmail(user);
+  };
 
   return (
     <Layout>
-      <LeftSidebar />
+      <LeftSidebar user={currentUserEmail} userData={currentUserDataHandler} />
       <Switch>
-        {isLogedIn && (
+        {isLogedIn && isLoaded && (
           <Route path="/dashboard" exact>
-            <Dashboard />
+            <Dashboard user={currentUserEmail} />
           </Route>
         )}
 
-        {isLogedIn && (
+        {isLogedIn && isLoaded && (
           <Route path="/tasks" exact>
-            <Tasks />
+            <Tasks
+              user={currentUserEmail}
+              dataUpdater={currentUserDataHandler}
+              userUpdater={currentUserDataUpdater}
+            />
           </Route>
         )}
-        {isLogedIn && (
+        {isLogedIn && isLoaded && (
           <Route path="/profile" exact>
-            <Profile />
+            <Profile
+              user={currentUserEmail}
+              dataUpdater={currentUserDataHandler}
+            />
           </Route>
         )}
-        {isLogedIn && (
+        {isLogedIn && isLoaded && (
           <Route path="/settings" exact>
-            <Settings />
+            <Settings user={currentUserEmail} />
           </Route>
         )}
         <Route path="*">

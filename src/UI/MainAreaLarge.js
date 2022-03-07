@@ -1,7 +1,7 @@
 import "./MainAreaLarge.css";
 
 function MainAreaLarge(props) {
-  return <div className="area-large">{props.children}</div>;
+  return <main className="area-large">{props.children}</main>;
 }
 
 export default MainAreaLarge;

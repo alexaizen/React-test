@@ -32,12 +32,9 @@
   padding: 0;
 }
 
-.left-sidebar button {
-  background-color: brown;
-  border-style: none;
-  padding: 15px 25px;
-  margin-bottom: 20px;
-  color: antiquewhite;
+.profile-area img {
+  border-radius: 15px;
+  margin-bottom: 15px;
 }
 
 .nav-menu {
@@ -51,6 +48,13 @@
 
 .nav-menu li {
   padding: 30px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.nav-menu li img {
+  margin-right: 20px;
 }
 
 .nav-menu a:link,
