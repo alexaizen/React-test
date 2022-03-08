@@ -10,14 +10,7 @@ import ProfileForm from "../Components/ProfileForm";
 
 function Profile(props) {
   const [editProfileToggler, setEditProfileToggler] = useState(false);
-  // const [enteredProfileData, setEnteredProfileData] = useState({
-  //   avatar: "https://mojtv.net/userfiles/image/konan.jpg",
-  //   name: "test",
-  //   occupation: "test",
-  //   socialFb: "https://www.facebook.com/arnold",
-  //   socialInsta: "https://www.instagram.com/schwarzenegger/?hl=en",
-  //   socialLi: "test",
-  // });
+ 
 
   const editToggleHandler = function () {
     setEditProfileToggler((prevState) => !prevState);
