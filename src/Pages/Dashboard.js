@@ -18,9 +18,8 @@ function Dashboard(props) {
         <h2>Dashboard</h2>
       </NavBar>
       <MainAreaMedium>
-     
         <WeatherDashCard />
-     
+
         <StockExchangeCard user={props.user} />
         <TasksDashCard user={props.user} />
         <ProjectsCard />

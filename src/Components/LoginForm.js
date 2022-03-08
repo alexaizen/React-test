@@ -11,7 +11,14 @@ function LoginForm(props) {
   const userPassReg = useRef();
 
   const [registering, setRegistering] = useState(false);
-  // const [ error, setError ] = useState(null);
+  const [error, setError] = useState(null);
+
+  const errorHandler = function (error) {
+    console.log("iz handlera " + error);
+    setError(error);
+    setTimeout(() => setError(null), 5000);
+  };
+
   const authFormHandler = function () {
     setRegistering((prevState) => !prevState);
   };
@@ -67,11 +74,8 @@ function LoginForm(props) {
         return res.json().then((data) => {
           for (const key in data) {
             if (data[key].email === currUser) {
-              console.log("*********");
-              console.log(key);
-              console.log(data[key]);
               props.userData(data[key], key);
-              console.log("nadjen user");
+              console.log("User loaded");
             }
           }
         });
@@ -83,7 +87,7 @@ function LoginForm(props) {
 
   const logingIn = function (event) {
     event.preventDefault();
-    // setError(null)
+    setError(null);
     const enteredEmailLogin = userEmailLogin.current.value;
     const enteredPassLogin = userPassLogin.current.value;
 
@@ -102,19 +106,63 @@ function LoginForm(props) {
       }
     ).then((res) => {
       if (res.ok) {
-        return res.json().then((data) => {          
-          loadUser(data.email);
-          props.onLogin();
-        });
+        return res
+          .json()
+          .then((resJSON) => {
+            loadUser(resJSON.email);
+            props.onLogin();
+          })
+          .catch((err) => {
+            console.log("Iz res.ok bloka " + err);
+          });
       } else {
-        throw new Error("Something went wrong")
-        
-           
+        res
+          .json()
+          .then((data) => data.error.message)
+          .then((data) => {
+            errorHandler(data);
+            throw new Error(data);
+          })
+          .catch((err) => {
+            console.log("Iz !res.ok bloka" + err);
+          });
       }
-    }).catch((err) => {
-      // setError(err)
-      console.log(err)});
+    });
   };
+
+  // const logingIn = function (event) {
+  //   event.preventDefault();
+  //   // setError(null)
+  //   const enteredEmailLogin = userEmailLogin.current.value;
+  //   const enteredPassLogin = userPassLogin.current.value;
+
+  //   fetch(
+  //     "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCsObJ1tkr1E0pqYRAzEQTHdI7i_S5-agA",
+  //     {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         email: enteredEmailLogin,
+  //         password: enteredPassLogin,
+  //         returnSecureToken: true,
+  //       }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   ).then((res) => {
+  //     if (res.ok) {
+  //       return res.json().then((data) => {
+  //         loadUser(data.email);
+  //         props.onLogin();
+  //       });
+  //     } else {
+  //       throw new Error("Something went wrong")
+
+  //     }
+  //   }).catch((err) => {
+  //     // setError(err)
+  //     console.log(err)});
+  // };
 
   const signUp = function (event) {
     event.preventDefault();
@@ -142,7 +190,16 @@ function LoginForm(props) {
           pushUser(data.email, enteredNameReg, enteredPassReg);
         });
       } else {
-        return res.json().then((data) => console.log(data));
+        res
+          .json()
+          .then((data) => data.error.message)
+          .then((data) => {
+            errorHandler(data);
+            throw new Error(data);
+          })
+          .catch((err) => {
+            console.log("Iz !res.ok bloka" + err);
+          });
       }
     });
   };
@@ -151,8 +208,8 @@ function LoginForm(props) {
     <React.Fragment>
       {/* Logging in auth form */}
       {!registering && (
-        // <form className="login-form" onSubmit={props.onLogin}>
         <form className="login-form" onSubmit={logingIn}>
+          {error && <p className="error-box">{error}</p>}
           <input
             id="email-login"
             placeholder="Enter E-mail"
@@ -164,7 +221,7 @@ function LoginForm(props) {
             placeholder="Enter Password"
             type="password"
           ></input>
-          {/* {error && <p>Error: {error}</p>} */}
+
           <button className="button-login-main" type="submit">
             Log in
           </button>
@@ -181,6 +238,7 @@ function LoginForm(props) {
       {/* Registering auth form */}
       {registering && (
         <form className="login-form" onSubmit={signUp}>
+          {error && <p className="error-box">{error}</p>}
           <input
             id="name-reg"
             type="text"

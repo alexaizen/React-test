@@ -36,3 +36,12 @@
   background-color: antiquewhite;
   color: rgb(209, 36, 36);
 }
+
+.error-box {
+  width: 100%;
+  border: 3px solid brown;
+  border-radius: 15px;
+  color: brown;
+  background-color: rgb(236, 187, 187);
+  padding: 30px 30px;
+}

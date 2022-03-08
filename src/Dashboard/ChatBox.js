@@ -2,6 +2,10 @@ import React from "react";
 import "./chatBox.css";
 
 function ChatBox() {
+  const sendMessage = function (e) {
+    e.preventDefault();
+  };
+
   return (
     <React.Fragment>
       <div className="message-area">
@@ -24,9 +28,11 @@ function ChatBox() {
           <p>ds dfdsfds hfghfghfghfghfghfghffdg hghfg hgh fd</p>
         </div>
       </div>
-      <form>
+      <form onSubmit={sendMessage}>
         <textarea className="text-area"></textarea>
-        <button className="chat-btn">SEND</button>
+        <button className="chat-btn" type="submit">
+          SEND
+        </button>
       </form>
     </React.Fragment>
   );
