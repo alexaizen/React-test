@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-import "./Profile.css";
+import "./profile.css";
 
 import MainAreaLarge from "../UI/MainAreaLarge";
 import NavBar from "../NavBar";

@@ -6,7 +6,7 @@ import "./Welcome.css";
 function Welcome(props) {
   return (
     <React.Fragment>
-      <h3>Welcome</h3>
+      <NavBar><h3>Welcome</h3></NavBar>
       <MainAreaMedium>
         We are glad that you are using our application, please create account
         and log In :)
