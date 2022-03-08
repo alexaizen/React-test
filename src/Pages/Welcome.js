@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../NavBar";
+
 import MainAreaMedium from "../UI/MainAreaMedium";
 import "./Welcome.css";
 
