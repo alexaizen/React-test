@@ -10,7 +10,7 @@ function TaskCardHeader(props) {
         <h5>{props.title}</h5>
 
         <p>{props.status}</p>
-        <img src={activityIcon} height="28px" alt="activity status" />
+        <img src={activityIcon} height="24px" alt="activity status" />
       </div>
     </React.Fragment>
   );

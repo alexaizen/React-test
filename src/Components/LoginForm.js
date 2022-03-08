@@ -11,6 +11,7 @@ function LoginForm(props) {
   const userPassReg = useRef();
 
   const [registering, setRegistering] = useState(false);
+  // const [ error, setError ] = useState(null);
   const authFormHandler = function () {
     setRegistering((prevState) => !prevState);
   };
@@ -82,6 +83,7 @@ function LoginForm(props) {
 
   const logingIn = function (event) {
     event.preventDefault();
+    // setError(null)
     const enteredEmailLogin = userEmailLogin.current.value;
     const enteredPassLogin = userPassLogin.current.value;
 
@@ -100,20 +102,23 @@ function LoginForm(props) {
       }
     ).then((res) => {
       if (res.ok) {
-        return res.json().then((data) => {
-          console.log("from login " + data.email);
-          console.log("logged in");
+        return res.json().then((data) => {          
           loadUser(data.email);
           props.onLogin();
         });
       } else {
-        return res.json().then((data) => console.log(data));
+        throw new Error("Something went wrong")
+        
+           
       }
-    });
+    }).catch((err) => {
+      // setError(err)
+      console.log(err)});
   };
 
   const signUp = function (event) {
     event.preventDefault();
+    // setError(null)
     const enteredEmailReg = userEmailReg.current.value;
     const enteredPassReg = userPassReg.current.value;
     const enteredNameReg = userNameReg.current.value;
@@ -159,6 +164,7 @@ function LoginForm(props) {
             placeholder="Enter Password"
             type="password"
           ></input>
+          {/* {error && <p>Error: {error}</p>} */}
           <button className="button-login-main" type="submit">
             Log in
           </button>
@@ -195,6 +201,7 @@ function LoginForm(props) {
             type="password"
             ref={userPassReg}
           ></input>
+          {/* {error && <p>Error: {error}</p>} */}
           <button className="button-login-main" type="submit">
             Register
           </button>
