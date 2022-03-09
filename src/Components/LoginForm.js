@@ -13,16 +13,27 @@ function LoginForm(props) {
   const [registering, setRegistering] = useState(false);
   const [error, setError] = useState(null);
 
+  // Error message handler and display
   const errorHandler = function (error) {
-    console.log("iz handlera " + error);
-    setError(error);
+    if (error === "INVALID_EMAIL") {
+      setError("Incorect E-mail, please enter valid E-mail address");
+    } else if (error === "MISSING_PASSWORD") {
+      setError("Password field cant be empty, please provide password")
+    } else if (error === "INVALID_PASSWORD") {
+      setError ("Incorect password, please enter valid login credentials")
+    } else {
+      setError(error)
+    }
+    
     setTimeout(() => setError(null), 5000);
   };
 
+  // registering form toggler
   const authFormHandler = function () {
     setRegistering((prevState) => !prevState);
   };
 
+  // function push user's profile data to database (called on a new user creation)
   const pushUser = function (userEmail, userName, enteredPassReg) {
     fetch(
       "https://react-1bbaa-default-rtdb.europe-west1.firebasedatabase.app/users.json",
@@ -65,6 +76,7 @@ function LoginForm(props) {
     });
   };
 
+  // function that load profile data from database to loaclly loaded user for user that just logged in
   const loadUser = function (currUser) {
     fetch(
       "https://react-1bbaa-default-rtdb.europe-west1.firebasedatabase.app/users.json"
@@ -85,6 +97,7 @@ function LoginForm(props) {
     });
   };
 
+  // function that triggers on logging in, it perform user credentials auth and calls loadUser() function to load profile data for current user if login was successful
   const logingIn = function (event) {
     event.preventDefault();
     setError(null);
@@ -130,43 +143,10 @@ function LoginForm(props) {
     });
   };
 
-  // const logingIn = function (event) {
-  //   event.preventDefault();
-  //   // setError(null)
-  //   const enteredEmailLogin = userEmailLogin.current.value;
-  //   const enteredPassLogin = userPassLogin.current.value;
-
-  //   fetch(
-  //     "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCsObJ1tkr1E0pqYRAzEQTHdI7i_S5-agA",
-  //     {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         email: enteredEmailLogin,
-  //         password: enteredPassLogin,
-  //         returnSecureToken: true,
-  //       }),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     }
-  //   ).then((res) => {
-  //     if (res.ok) {
-  //       return res.json().then((data) => {
-  //         loadUser(data.email);
-  //         props.onLogin();
-  //       });
-  //     } else {
-  //       throw new Error("Something went wrong")
-
-  //     }
-  //   }).catch((err) => {
-  //     // setError(err)
-  //     console.log(err)});
-  // };
-
+  
+  // signUp function that create new user account and calls pushUser() to create new user into database and populate it with profile data
   const signUp = function (event) {
     event.preventDefault();
-    // setError(null)
     const enteredEmailReg = userEmailReg.current.value;
     const enteredPassReg = userPassReg.current.value;
     const enteredNameReg = userNameReg.current.value;
@@ -259,7 +239,7 @@ function LoginForm(props) {
             type="password"
             ref={userPassReg}
           ></input>
-          {/* {error && <p>Error: {error}</p>} */}
+        
           <button className="button-login-main" type="submit">
             Register
           </button>
