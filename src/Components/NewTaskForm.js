@@ -1,13 +1,40 @@
+import React, { useRef, useState } from "react";
+
+
+
 import "./NewTaskForm.css";
-import React, { useRef } from "react";
+
 
 function NewTaskForm(props) {
+
+  const [ addTaskValidation, setAddTaskValidation ] = useState(null);
+
+  const addTaskValidationHandler = function (message) {
+    setAddTaskValidation(message)
+    setTimeout(()=>setAddTaskValidation(null), 5000)
+  }
+
+  // Form submit handler with validation
   const formSubmitHandler = function (e) {
     e.preventDefault();
     const title = taskTitle.current.value;
     const desc = taskDesc.current.value;
     const id = Math.random();
+    if(title.trim().length === 0) {
+      console.log("Title cannot be empty")
+      addTaskValidationHandler("Title cannot be empty")
+      return
+    }
+    if(desc.trim().length === 0) {
+      addTaskValidationHandler("Description cannot be empty")
+      console.log("Description cannot be empty")
+      return
+    }
+    newTaskDataSubmiter(title, desc, id)        
+    
+  };
 
+  const newTaskDataSubmiter = function (title, desc,id) {
     props.onAdd({
       id: id,
       title: title,
@@ -26,7 +53,7 @@ function NewTaskForm(props) {
       props.user.id
     );
 
-    // Addint to database
+    // Adding to database
     fetch(
       `https://react-1bbaa-default-rtdb.europe-west1.firebasedatabase.app/users/${props.user.id}.json`,
       {
@@ -54,7 +81,7 @@ function NewTaskForm(props) {
     });
 
     // END of fetch function
-  };
+  }
 
   const taskTitle = useRef();
   const taskDesc = useRef();
@@ -62,6 +89,7 @@ function NewTaskForm(props) {
   return (
     <React.Fragment>
       <form className="new-task" onSubmit={formSubmitHandler}>
+        
         <input
           ref={taskTitle}
           id="task-title"
@@ -79,6 +107,7 @@ function NewTaskForm(props) {
       <button type="text" className="cancel" onClick={props.onTaskToggle}>
         Cancel
       </button>
+      {addTaskValidation && <p className="validation-error-box" >{addTaskValidation}</p>}
     </React.Fragment>
   );
 }
