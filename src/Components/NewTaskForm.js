@@ -25,6 +25,11 @@ function NewTaskForm(props) {
       addTaskValidationHandler("Title cannot be empty")
       return
     }
+    if(title.length > 25) {
+      console.log("Title cannot be empty")
+      addTaskValidationHandler("Title too long, it can't be longer than 25 characters")
+      return
+    }
     if(desc.trim().length === 0) {
       addTaskValidationHandler("Description cannot be empty")
       console.log("Description cannot be empty")

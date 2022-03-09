@@ -1,6 +1,6 @@
 import "./ProfileForm.css";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function ProfileForm(props) {
   const avatarInput = useRef();
@@ -10,25 +10,27 @@ function ProfileForm(props) {
   const socialInstaInput = useRef();
   const socialLiInput = useRef();
 
-  const profileDataLift = function (e) {
-    e.preventDefault();
+  const [ profileFormValidationMsg, setProfileFormValidationMsg ] = useState(null);
 
-    const avatarInputValue = avatarInput.current.value;
-    const nameInputValue = nameInput.current.value;
-    const occupationInputValue = occupationInput.current.value;
-    const socialFbInputValue = socialFbInput.current.value;
-    const socialInstaInputValue = socialInstaInput.current.value;
-    const socialLiInputValue = socialLiInput.current.value;
+  const validationMessage = function(msg) {
+      setProfileFormValidationMsg(msg)
+      setTimeout(()=>setProfileFormValidationMsg(null), 5000)
+  }
 
-    console.log(
-      avatarInputValue,
-      nameInputValue,
-      occupationInputValue,
-      socialFbInputValue,
-      socialInstaInputValue,
-      socialLiInputValue
-    );
+  // Regex to check is input is valid URL
+  const validURL = function (str) {
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+      '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    return !!pattern.test(str);
+  }
 
+
+  // Profile data update function. Update to database and to current user data
+  const updateProfileData = function (avatarInputValue, nameInputValue, occupationInputValue, socialFbInputValue, socialInstaInputValue, socialLiInputValue){
     fetch(
       `https://react-1bbaa-default-rtdb.europe-west1.firebasedatabase.app/users/${props.data.id}.json`,
       {
@@ -73,6 +75,43 @@ function ProfileForm(props) {
       },
       props.data.id
     );
+  }
+
+  // Function that is called on submit form. It check for input validity and eventually submit and update data
+  const profileDataLift = function (e) {
+    e.preventDefault();
+
+    const avatarInputValue = avatarInput.current.value;
+    const nameInputValue = nameInput.current.value;
+    const occupationInputValue = occupationInput.current.value;
+    const socialFbInputValue = socialFbInput.current.value;
+    const socialInstaInputValue = socialInstaInput.current.value;
+    const socialLiInputValue = socialLiInput.current.value;
+
+    
+
+    if (!validURL(avatarInputValue)) {
+      validationMessage("Profile picture must be URL")
+      return
+    }
+
+    if (!validURL(socialFbInputValue)) {
+      validationMessage("Facebook URL is not valid")
+      return
+    }
+    if (!validURL(socialInstaInputValue)) {
+      validationMessage("Instagram URL is not valid")
+      return
+    }
+
+    if (!validURL(socialLiInputValue)) {
+      validationMessage("LinkedIn URL is not valid")
+      return
+    }
+    
+     
+    updateProfileData(avatarInputValue, nameInputValue, occupationInputValue, socialFbInputValue, socialInstaInputValue, socialLiInputValue)
+    
     props.onSubmit();
   };
 
@@ -127,6 +166,7 @@ function ProfileForm(props) {
           defaultValue={props.data.li}
         ></input>
       </span>
+      {profileFormValidationMsg && <p>{profileFormValidationMsg}</p>}
 
       <button className="prof-form-submit-btn" type="submit">
         Confirm

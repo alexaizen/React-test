@@ -13,11 +13,18 @@ function Tasks(props) {
 
   const [taskListState, setTaskListState] = useState(taskList);
   const [addingTaskToggle, setaddingTaskToggl] = useState(false);
+  const [ taskAddedSuccessMsg, setTaskAddedSuccessMsg] = useState(false)
+
+  const successMessage = function () {
+    setTaskAddedSuccessMsg("Task added successfully")
+    setTimeout(()=>setTaskAddedSuccessMsg(false), 4000)
+  }
 
   const newTaskHandler = function (task) {
     setTaskListState((prevState) => [task, ...prevState]);
     console.log(taskListState);
     addTaskToggler();
+    successMessage()
   };
 
   const addTaskToggler = function () {
@@ -121,11 +128,15 @@ function Tasks(props) {
       </MainAreaMediumThree>
       <RightSidebar>
         {!addingTaskToggle && (
+          <React.Fragment>
           <div className="add-task">
             <button type="button" onClick={addTaskToggler}>
               Add Task
             </button>
+            
           </div>
+          {taskAddedSuccessMsg && <p className="add-task-success" >{taskAddedSuccessMsg}</p>}
+          </React.Fragment>
         )}
         {addingTaskToggle && (
           <NewTaskForm

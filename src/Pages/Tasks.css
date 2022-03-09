@@ -19,3 +19,13 @@
   color: antiquewhite;
   font-size: 14px;
 }
+
+.add-task-success {
+  width: 90%;
+  border: 5px solid rgb(26, 26, 26);
+  border-radius: 15px;
+  color: color;
+  font-weight: 600;
+  background-color: darkgreen;
+  padding: 30px 30px;
+}
