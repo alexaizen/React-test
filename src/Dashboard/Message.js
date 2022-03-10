@@ -1,19 +1,20 @@
-import React from "react"
-import "./Message.css"
+import React from "react";
 
-function Message (props) {
+import "./Message.css";
 
-    return (
-        <React.Fragment>
-            <div className="message-container" >
-                <span className="message-header" >
-                    <img src={props.avatar} width="36px" alt="mesage sender avatar" />
-                    <h5>{props.name}</h5>
-                </span>
-                <p>{props.message}</p></div>
+function Message(props) {
+  return (
+    <React.Fragment>
+      <li className="message-container">
+        <div className="message-header">
+          <img src={props.avatar} width="36px" alt="mesage sender avatar" />
+          <h5>{props.name}</h5>
+        </div>
 
-        </React.Fragment>
-    )
+        <p>{props.message}</p>
+      </li>
+    </React.Fragment>
+  );
 }
 
 export default Message;
