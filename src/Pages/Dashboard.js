@@ -26,7 +26,7 @@ function Dashboard(props) {
       </MainAreaMedium>
 
       <RightSidebar>
-        <ChatBox />
+        <ChatBox user={props.user}/>
       </RightSidebar>
       <StatusBar />
     </React.Fragment>

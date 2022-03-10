@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-
+import useTest from "../Hooks/useTest.js"
 
 import "./NewTaskForm.css";
 
@@ -13,14 +13,18 @@ function NewTaskForm(props) {
     setAddTaskValidation(message)
     setTimeout(()=>setAddTaskValidation(null), 5000)
   }
-
+  
+  const customHook = useTest("iz poziva custom hook")
+  
   // Form submit handler with validation
   const formSubmitHandler = function (e) {
     e.preventDefault();
     const title = taskTitle.current.value;
     const desc = taskDesc.current.value;
     const id = Math.random();
+    
     if(title.trim().length === 0) {
+      console.log(customHook)
       console.log("Title cannot be empty")
       addTaskValidationHandler("Title cannot be empty")
       return

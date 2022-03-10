@@ -12,3 +12,7 @@
 .task-card-header h5 {
   margin-right: auto;
 }
+
+.task-card-header p {
+  margin: 0;
+}

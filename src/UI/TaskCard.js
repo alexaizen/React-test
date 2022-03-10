@@ -147,7 +147,7 @@ function TaskCard(props) {
       {!isEditing && (
         <div className="task-card-single">
           <TaskCardHeader title={props.title} status={props.status} />
-          <p>{`${props.desc}`}</p>
+          <p className="task-desc" >{`${props.desc}`}</p>
           <span className="buttons-area">
             <button
               className="button-delete"

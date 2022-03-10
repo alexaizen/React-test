@@ -77,3 +77,33 @@
   margin-top: auto;
   column-gap: 10px;
 }
+
+
+.task-desc {
+  height: 52px;
+  margin: 7px 0;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.task-desc::-webkit-scrollbar {
+  width: 7px;
+  margin-right: 5px;
+  background-color: #154c7900;
+  border-radius: 150px;
+}
+
+.task-desc::-webkit-scrollbar-thumb {
+  width: 7px;
+  background-color: #154c79;
+  border-radius: 15px;
+}
+
+.task-desc::-webkit-scrollbar-track {
+  height: 60%;
+  /* box-shadow: inset 0 0 5px rgb(44, 44, 44); */
+  border-radius: 150px;
+  margin-right: 15px;
+} 
+
+

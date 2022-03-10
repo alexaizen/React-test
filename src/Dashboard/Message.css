@@ -1,0 +1,23 @@
+.message-container {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    background-color: rgba(243, 223, 221, 0.616);
+}
+
+.message-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.message-header img {
+    border-radius: 8px;
+}
+
+.message-header h5 {
+    margin: 0 0 0 20px;
+    font-size: 12px;
+}
