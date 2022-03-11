@@ -7,7 +7,7 @@ import { loginActions } from "./store";
 
 function LeftSidebar(props) {
   const dispatch = useDispatch();
-  const isLogedIn = useSelector((state) => state.isLogedIn);
+  const isLogedIn = useSelector((state) => state.login.isLogedIn);
   const history = useHistory();
 
   const loginStatusHandler = function (e) {

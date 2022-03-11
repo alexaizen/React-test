@@ -10,9 +10,26 @@ const loginSlice = createSlice({
   },
 });
 
+const messagesSlice = createSlice({
+  name: "messages",
+  initialState: { previousSender: "no sender", messageAligment: "left" },
+  reducers: {
+    previousSenderDisp(state, action) {
+      state.previousSender = action.payload;
+    },
+    messageAligmentToggle(state) {
+      if (state.messageAligment === "left") {
+        state.messageAligment = "right";
+    } else {
+      state.messageAligment = "left";
+    }
+  },
+}});
+
 const store = configureStore({
-  reducer: loginSlice.reducer,
+  reducer: { login: loginSlice.reducer, messages: messagesSlice.reducer}
 });
 
 export const loginActions = loginSlice.actions;
+export const messagesActions = messagesSlice.actions;
 export default store;

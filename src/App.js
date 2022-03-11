@@ -11,7 +11,7 @@ import Tasks from "./Pages/Tasks";
 import Welcome from "./Pages/Welcome";
 
 function App() {
-  const isLogedIn = useSelector((state) => state.isLogedIn);
+  const isLogedIn = useSelector((state) => state.login.isLogedIn);
   const [isLoaded, setIsloaded] = useState(false);
 
   // Identifies currently logged user by email

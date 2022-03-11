@@ -153,8 +153,8 @@ function ChatBox(props) {
         <ul className="message-area-inner">
           {messagesArray.map((msg) => (
             <Message
-              key={msg.keyIdMsg}
-              id={msg.userIdMsg}
+              key={msg.keyIdMsg + Math.random()}
+              id={msg.userIdMsg}              
               avatar={msg.avatarMsg}
               name={msg.nameMsg}
               message={msg.messageMsg}
