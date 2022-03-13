@@ -8,6 +8,8 @@ import "./chatBox.css";
 function ChatBox(props) {
   const messageInput = useRef();
   const [messagesArray, setMessagesArray] = useState([]);
+  let previousSender = "no sender";
+  let messageAligment = "left";
 
   const messagesArrayReset = function () {
     setMessagesArray([]);
@@ -151,15 +153,26 @@ function ChatBox(props) {
     <React.Fragment>
       <div className="message-area">
         <ul className="message-area-inner">
-          {messagesArray.map((msg) => (
-            <Message
-              key={msg.keyIdMsg + Math.random()}
-              id={msg.userIdMsg}              
-              avatar={msg.avatarMsg}
-              name={msg.nameMsg}
-              message={msg.messageMsg}
-            ></Message>
-          ))}
+          {messagesArray.map((msg) => {
+            const isSameSender = previousSender === msg.userIdMsg;
+            if (!isSameSender) {
+              messageAligment === "left"
+                ? (messageAligment = "right")
+                : (messageAligment = "left");
+            }
+            previousSender = msg.userIdMsg;
+            return (
+              <Message
+                key={msg.keyIdMsg + Math.random()}
+                id={msg.userIdMsg}
+                avatar={msg.avatarMsg}
+                name={msg.nameMsg}
+                message={msg.messageMsg}
+                sameSender={isSameSender}
+                messageAligment={messageAligment}
+              ></Message>
+            );
+          })}
         </ul>
       </div>
       <form onSubmit={sendMessage}>
